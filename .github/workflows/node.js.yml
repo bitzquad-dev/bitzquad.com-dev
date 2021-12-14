@@ -32,3 +32,22 @@ jobs:
     - run: npm i --package-lock-only
     - run: npm install
     - run: npm run build
+    
+    - name: Push directory to another repository
+      uses: cpina/github-action-push-to-another-repository@v1.3
+      with:
+        # Source directory from the origin directory
+        source-directory: build
+        # Name of the destination username/organization
+        destination-github-username: bitzquad
+        # Destination repository
+        destination-repository-name: bitzquad.com
+        # Email for the git commit
+        user-email: gitbot@bitzquad.com
+        # [Optional] Username/organization for the destination repository
+        destination-repository-username: bitzquad
+        # [Optional] set target branch name for the destination repository. Defaults to "master" for historical reasons
+        target-branch: main
+        # [Optional] commit message for the output repository. ORIGIN_COMMIT is replaced by the URL@commit in the origin repo
+        commit-message: Github action build
+    
