@@ -1,4 +1,5 @@
-import adapter from "@sveltejs/adapter-auto";
+import adapter from "@sveltejs/adapter-static";
+// import adapter from "@sveltejs/adapter-auto";
 import preprocess from "svelte-preprocess";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -8,14 +9,33 @@ const config = {
   preprocess: [
     preprocess({
       postcss: true,
+
+      scss: {
+        prependData: '@import "src/variables.scss";',
+      },
     }),
   ],
 
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      // default options are shown
+      pages: 'build',
+      assets: 'build',
+      fallback: null
+    }),
 
     // hydrate the <div id="svelte"> element in src/app.html
     target: "#svelte",
+
+    vite: {
+      css: {
+        preprocessorOptions: {
+          scss: {
+            additionalData: '@import "src/variables.scss";',
+          },
+        },
+      },
+    },
   },
 };
 
