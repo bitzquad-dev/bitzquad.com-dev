@@ -3,3 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.socialContainer {
+  @apply flex flex-row mt-4;
+}
+
+.footer {
+  @apply text-white flex items-center justify-center;
+}
